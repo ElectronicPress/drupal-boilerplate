@@ -51,4 +51,4 @@ Thumbs.db
 
 # Other #
 #########
-docroot/sites/*node_modules
+node_modules
