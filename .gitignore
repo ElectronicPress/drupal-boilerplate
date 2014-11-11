@@ -48,3 +48,7 @@ docroot/sites/*/private
 ehthumbs.db
 Icon\?
 Thumbs.db
+
+# Other #
+#########
+docroot/sites/*node_modules
