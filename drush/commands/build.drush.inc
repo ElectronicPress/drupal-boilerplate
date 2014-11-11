@@ -56,27 +56,44 @@ function _drush_build() {
  * Callback for drush devify.
  */
 function _drush_devify() {
+
+  // Get available modules, since drupal will bail if it's not found on the FS.
+  $modules_available = array_keys(system_rebuild_module_data());
+
   // Disable modules.
   $modules = drush_get_option('disable-modules', array('update'));
+
   if (is_string($modules)) {
     $modules = explode(',', $modules);
   }
+
+  // Remove unavailable modules.
+  $modules = array_intersect($modules, $modules_available);
+
+  // Disable the modules.
   module_disable($modules);
 
   // Enable modules.
   $modules = drush_get_option('enable-modules', array());
+
   if (is_string($modules)) {
     $modules = explode(',', $modules);
   }
+
+  // Remove unavailable modules.
+  $modules = array_intersect($modules, $modules_available);
+
+  // Enable modules.
   module_enable($modules);
 
   // Delete variables.
-  $variables = drush_get_option('delete-variables', array(
-    'googleanalytics_account',
-  ));
+  $variables = drush_get_option('delete-variables', array());
+
   if (is_string($variables)) {
     $variables = explode(',', $variables);
   }
+
+  // Delete variables.
   foreach ($variables as $variable) {
     variable_del($variable);
   }
@@ -88,10 +105,13 @@ function _drush_devify() {
     'cache' => 0,
     'page_compression' => 0,
   ));
+
   if (is_string($variables)) {
+
     // Explode a=b,c=d into an associative array.
     $variables_raw = explode(',', $variables);
     $variables = array();
+
     foreach ($variables_raw as $value) {
       $variable = explode('=', $value);
       if (count($variable) == 2) {
@@ -99,6 +119,7 @@ function _drush_devify() {
       }
     }
   }
+
   foreach ($variables as $name => $value) {
     variable_set($name, $value);
   }
