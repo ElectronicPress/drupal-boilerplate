@@ -77,9 +77,6 @@ $developer_modules = array(
   'views_theme_wizard',
 );
 
-// Add more custom developer modules.
-$developer_modules += array('reroute_email');
-
 // Set the options.
 $command_specific = array(
   'rsync' => array('verbose' => TRUE),
