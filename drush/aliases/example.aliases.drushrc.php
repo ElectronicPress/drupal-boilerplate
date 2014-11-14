@@ -11,8 +11,8 @@
  */
 
 $aliases['dev'] = array(
- 'uri' => 'example.lan',
- 'root' => str_replace('drush/aliases', 'docroot', dirname(__FILE__)),
+  'uri' => 'example.lan',
+  'root' => str_replace('drush/aliases', 'docroot', dirname(__FILE__)),
 );
 
 $aliases['stage'] = array(
