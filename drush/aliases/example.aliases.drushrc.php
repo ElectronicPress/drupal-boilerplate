@@ -20,6 +20,7 @@ $aliases['stage'] = array(
   'root' => '/var/www/html/stage.example.com/docroot',
   'remote-host' => 'example.com',
   'remote-user' => 'user',
+  'ssh-options' => '-p 1234',
 );
 
 $aliases['live'] = array(
@@ -27,4 +28,5 @@ $aliases['live'] = array(
   'root' => '/var/www/html/stage.example.com/docroot',
   'remote-host' => 'example.com',
   'remote-user' => 'user',
+  'ssh-options' => '-p 1234',
 );
