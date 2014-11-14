@@ -26,13 +26,13 @@ function build_drush_command() {
       'disable-modules' => 'A comma separated list of modules to disable.',
       'delete-variables' => 'A comma separated list of variables to delete.',
       'reset-variables' => 'A comma separated list of variables to reset with ' .
-                           'the format foo=var,hey=ho.',
+        'the format foo=var,hey=ho.',
     ),
     'examples' => array(
       'drush devify' => 'Uses command default values to set up a database for development.',
       'drush devify --enable-modules=xhprof,devel' => 'Enables XHProf and Devel modules',
       'drush devify --reset-variables=site_mail=local@local.com,file_temporary_path=/tmp'
-        => 'Resets site_mail and file_temporary_path variables.',
+      => 'Resets site_mail and file_temporary_path variables.',
     ),
   );
 
@@ -63,9 +63,8 @@ function _drush_devify() {
   // Disable modules.
   $modules = drush_get_option('disable-modules', array('update'));
 
-  if (is_string($modules)) {
-    $modules = explode(',', $modules);
-  }
+  // Convert to array if necessary.
+  $modules = is_string($modules) ? explode(',', $modules) : $modules;
 
   // Remove unavailable modules.
   $modules = array_intersect($modules, $modules_available);
@@ -76,9 +75,8 @@ function _drush_devify() {
   // Enable modules.
   $modules = drush_get_option('enable-modules', array());
 
-  if (is_string($modules)) {
-    $modules = explode(',', $modules);
-  }
+  // Convert to array if necessary.
+  $modules = is_string($modules) ? explode(',', $modules) : $modules;
 
   // Remove unavailable modules.
   $modules = array_intersect($modules, $modules_available);
@@ -89,9 +87,8 @@ function _drush_devify() {
   // Delete variables.
   $variables = drush_get_option('delete-variables', array());
 
-  if (is_string($variables)) {
-    $variables = explode(',', $variables);
-  }
+  // Convert to array if necessary.
+  $variables = is_string($variables) ? explode(',', $variables) : $variables;
 
   // Delete variables.
   foreach ($variables as $variable) {
