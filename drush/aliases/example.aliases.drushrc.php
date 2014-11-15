@@ -23,7 +23,7 @@ $aliases['stage'] = array(
   'ssh-options' => '-p 1234',
 );
 
-$aliases['live'] = array(
+$aliases['prod'] = array(
   'uri' => 'example.com',
   'root' => '/var/www/html/stage.example.com/docroot',
   'remote-host' => 'example.com',
