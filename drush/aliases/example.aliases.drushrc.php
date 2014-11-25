@@ -14,7 +14,7 @@
 $name = '';
 $site = '';
 $opts = '';
-$user = '';
+$user = exec('whoami');
 
 // Common settings.
 $path_prefix = '/var/www/html/';
