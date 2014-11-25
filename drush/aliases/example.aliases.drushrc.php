@@ -11,26 +11,26 @@
  */
 
 // Project identification.
+$name = '';
 $site = '';
-$url  = '';
 $opts = '';
 $user = '';
 
 // Common settings.
 $path_prefix = '/var/www/html/';
 $path_suffix = '/docroot';
-$path = $path_prefix . $url . $path_suffix;
+$path = $path_prefix . $site . $path_suffix;
 
 // Development environment.
 $aliases['dev'] = array(
-  'uri' => $site . '.emh.ds9.e9p.net',
+  'uri' => $name . '.emh.ds9.e9p.net',
   'root' => $path,
 );
 
 // Staging environment(s).
 $aliases['stage'] = array(
   'parent' => '@dev',
-  'uri' => $site . '.archer.e9p.net',
+  'uri' => $name . '.archer.e9p.net',
   'remote-host' => 'archer.e9p.net',
   'remote-user' => $user,
   'ssh-options' => $opts,
@@ -39,6 +39,6 @@ $aliases['stage'] = array(
 // Production environment(s).
 $aliases['prod'] = array(
   'parent' => '@stage',
-  'uri' => $site . '.picard.e9p.net',
+  'uri' => $name . '.picard.e9p.net',
   'remote-host' => 'picard.e9p.net',
 );
