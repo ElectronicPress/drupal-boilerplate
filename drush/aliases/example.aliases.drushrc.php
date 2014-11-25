@@ -10,23 +10,35 @@
  * everyone can just overwrite the different settings.
  */
 
+// Project identification.
+$site = '';
+$url  = '';
+$opts = '';
+$user = '';
+
+// Common settings.
+$path_prefix = '/var/www/html/';
+$path_suffix = '/docroot';
+$path = $path_prefix . $url . $path_suffix;
+
+// Development environment.
 $aliases['dev'] = array(
-  'uri' => 'example.lan',
-  'root' => str_replace('drush/aliases', 'docroot', dirname(__FILE__)),
+  'uri' => $site . '.emh.ds9.e9p.net',
+  'root' => $path,
 );
 
+// Staging environment(s).
 $aliases['stage'] = array(
-  'uri' => 'stage.example.com',
-  'root' => '/var/www/html/stage.example.com/docroot',
-  'remote-host' => 'example.com',
-  'remote-user' => 'user',
-  'ssh-options' => '-p 1234',
+  'parent' => '@dev',
+  'uri' => $site . '.archer.e9p.net',
+  'remote-host' => 'archer.e9p.net',
+  'remote-user' => $user,
+  'ssh-options' => $opts,
 );
 
+// Production environment(s).
 $aliases['prod'] = array(
-  'uri' => 'example.com',
-  'root' => '/var/www/html/stage.example.com/docroot',
-  'remote-host' => 'example.com',
-  'remote-user' => 'user',
-  'ssh-options' => '-p 1234',
+  'parent' => '@stage',
+  'uri' => $site . '.picard.e9p.net',
+  'remote-host' => 'picard.e9p.net',
 );
