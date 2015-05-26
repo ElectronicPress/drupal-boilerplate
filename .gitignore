@@ -54,3 +54,4 @@ Thumbs.db
 node_modules
 .idea
 docroot/sites/default/themes/*/css
+._*
